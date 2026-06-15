@@ -1,5 +1,6 @@
 package service;
 
+import config.DatabaseConfig;
 import entities.Usuario;
 import enums.Rol;
 import exception.DatoInvalidoException;
@@ -10,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioService {
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios;
     private Long ultimoId = 0L;
+
+    public UsuarioService() {
+        this.usuarios = DatabaseConfig.getUsuariosTable();
+    }
 
     public Long generarSiguienteId() {
         return ++ultimoId;
@@ -21,7 +26,7 @@ public class UsuarioService {
     public List<Usuario> listarUsuariosActivos() {
         List<Usuario> activos = new ArrayList<>();
         for (Usuario u : usuarios) {
-            if (!u.isEliminado()) { // 👈 Filtro estricto de baja lógica
+            if (!u.isEliminado()) {
                 activos.add(u);
             }
         }

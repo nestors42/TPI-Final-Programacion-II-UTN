@@ -157,7 +157,7 @@ public class MenuProductos extends MenuBase implements MenuPantalla {
             System.out.print("¿Seguro que desea ocultar este producto del catálogo? (S/N): ");
             if (scanner.nextLine().equalsIgnoreCase("S")) {
                 productoService.eliminarProducto(id);
-                System.out.println("\n[ÉXITO] Producto removido lógicamente del catálogo activo.");
+                System.out.println("\n[ÉXITO] Producto fue removido del catálogo.");
             } else {
                 System.out.println("\n[INFO] Operación cancelada.");
             }

@@ -1,5 +1,6 @@
 package service;
 
+import config.DatabaseConfig;
 import entities.Categoria;
 import entities.Producto;
 import exception.DatoInvalidoException;
@@ -10,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoService {
-    private List<Producto> productos = new ArrayList<>();
+    private List<Producto> productos;
     private Long ultimoId = 0L;
+
+    public ProductoService() {
+        this.productos = DatabaseConfig.getProductosTable();
+    }
 
     public Long generarSiguienteId() {
         return ++ultimoId;

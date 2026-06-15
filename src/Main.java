@@ -9,7 +9,7 @@ public class Main {
     private static CategoriaService categoriaService = new CategoriaService();
     private static ProductoService productoService = new ProductoService();
     private static UsuarioService usuarioService = new UsuarioService();
-    private static PedidoService pedidoService = new PedidoService();
+    private static PedidoService pedidoService = new PedidoService(usuarioService, productoService);
 
     public static void main(String[] args) {
 

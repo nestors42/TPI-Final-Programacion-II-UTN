@@ -1,5 +1,6 @@
 package service;
 
+import config.DatabaseConfig;
 import entities.Categoria;
 import exception.DatoInvalidoException;
 import exception.EntidadNoEncontradaException;
@@ -10,8 +11,12 @@ import java.util.List;
 
 public class CategoriaService {
 
-    private List<Categoria> categorias = new ArrayList<>();
+    private List<Categoria> categorias;
     private Long ultimoId = 0L;
+
+    public CategoriaService() {
+        this.categorias = DatabaseConfig.getCategoriasTable();
+    }
 
     public List<Categoria> getCategorias() {
         return categorias;

@@ -1,5 +1,6 @@
 package service;
 
+import config.DatabaseConfig;
 import entities.Pedido;
 import entities.Producto;
 import entities.Usuario;
@@ -14,8 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoService {
-    private List<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos;
     private Long ultimoId = 0L;
+
+    private UsuarioService usuarioService;
+    private ProductoService productoService;
+
+    public PedidoService(UsuarioService usuarioService, ProductoService productoService) {
+        this.pedidos = DatabaseConfig.getPedidosTable(); // Busca su lista en la caja fuerte
+        this.usuarioService = usuarioService;
+        this.productoService = productoService;
+    }
 
     public Long generarSiguienteId() {
         return ++ultimoId;
@@ -33,9 +43,7 @@ public class PedidoService {
     }
 
     // 🌟 HU-PED-02: Crear pedido transaccional controlado (Criterio Pág. 12)
-    public Pedido crearPedidoTransaccional(Usuario usuario, FormaPago formaPago,
-                                           List<Producto> productosCarrito,
-                                           List<Integer> cantidadesCarrito) throws DatoInvalidoException {
+    public Pedido crearPedidoTransaccional(Usuario usuario, FormaPago formaPago, List<Producto> productosCarrito, List<Integer> cantidadesCarrito) throws DatoInvalidoException {
 
         if (usuario == null || usuario.isEliminado()) {
             throw new DatoInvalidoException("No se puede crear un pedido sin un usuario activo.");
@@ -78,13 +86,13 @@ public class PedidoService {
                 nuevoPedido.addDetallePedido(cantPedida, prod.getPrecio(), prod);
             }
 
-            // 3. Si todo salió bien, guardamos el pedido en las colecciones
+            // guardamos el pedido
             pedidos.add(nuevoPedido);
             usuario.agregarPedido(nuevoPedido);
             return nuevoPedido;
 
         } catch (Exception e) {
-            // 🌟 CRITERIO HU-PED-02 (Pág. 12): Si saltó falta de stock, restauramos todo a como estaba
+
             for (int i = 0; i < productosCarrito.size(); i++) {
                 productosCarrito.get(i).setStock(stocksDeRespaldo.get(i));
             }
@@ -102,14 +110,14 @@ public class PedidoService {
         throw new EntidadNoEncontradaException("No se encontró ningún pedido activo con el ID: " + id);
     }
 
-    // 🌟 HU-PED-03: Actualizar Estado o Forma de Pago
+
     public void actualizarPedido(Long id, Estado nuevoEstado, FormaPago nuevaForma) throws EntidadNoEncontradaException {
         Pedido p = buscarPorId(id);
         if (nuevoEstado != null) p.setEstado(nuevoEstado);
         if (nuevaForma != null) p.setFormaPago(nuevaForma);
     }
 
-    // 🌟 HU-PED-04: Eliminar pedido (Baja lógica)
+
     public void eliminarPedido(Long id) throws EntidadNoEncontradaException {
         Pedido p = buscarPorId(id);
         p.setEliminado(true);
