@@ -3,14 +3,15 @@ package ui;
 import entities.Categoria;
 import exception.DatoInvalidoException;
 import exception.EntidadNoEncontradaException;
+import interfaces.MenuPantalla;
 import service.CategoriaService;
 import java.util.List;
 
-public class MenuCategorias extends MenuBase { // 👈 También hereda de MenuBase
+public class MenuCategorias extends MenuBase implements MenuPantalla {
     private CategoriaService categoriaService;
 
     public MenuCategorias(CategoriaService categoriaService) {
-        super(); // 👈 Inicializa el Scanner heredado
+        super();
         this.categoriaService = categoriaService;
     }
 
@@ -24,7 +25,9 @@ public class MenuCategorias extends MenuBase { // 👈 También hereda de MenuBa
         System.out.println("0. Volver al menú principal");
     }
 
-    public void ejecutarSubmenu() {
+    // 🌟 Sincronizado con la interfaz MenuPantalla
+    @Override
+    public void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
             mostrarOpciones();

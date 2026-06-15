@@ -8,14 +8,14 @@ import enums.Estado;
 import enums.FormaPago;
 import exception.DatoInvalidoException;
 import exception.EntidadNoEncontradaException;
+import interfaces.MenuPantalla;
 import service.PedidoService;
 import service.ProductoService;
 import service.UsuarioService;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuPedidos extends MenuBase {
+public class MenuPedidos extends MenuBase implements MenuPantalla {
     private PedidoService pedidoService;
     private UsuarioService usuarioService;
     private ProductoService productoService;
@@ -37,7 +37,9 @@ public class MenuPedidos extends MenuBase {
         System.out.println("0. Volver al menú principal");
     }
 
-    public void ejecutarSubmenu() {
+    // 🌟 Sincronizado con la interfaz MenuPantalla
+    @Override
+    public void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
             mostrarOpciones();

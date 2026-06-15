@@ -4,11 +4,11 @@ import entities.Usuario;
 import enums.Rol;
 import exception.DatoInvalidoException;
 import exception.EntidadNoEncontradaException;
+import interfaces.MenuPantalla;
 import service.UsuarioService;
-
 import java.util.List;
 
-public class MenuUsuarios extends MenuBase { // 👈 Aplica Herencia [cite: 51]
+public class MenuUsuarios extends MenuBase implements MenuPantalla {
     private UsuarioService usuarioService;
 
     public MenuUsuarios(UsuarioService usuarioService) {
@@ -26,17 +26,19 @@ public class MenuUsuarios extends MenuBase { // 👈 Aplica Herencia [cite: 51]
         System.out.println("0. Volver al menú principal");
     }
 
-    public void ejecutarSubmenu() {
+    // 🌟 Sincronizado con la interfaz MenuPantalla
+    @Override
+    public void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
             mostrarOpciones();
             opcionSub = capturarOpcionNumericaSegura(0, 4);
 
             switch (opcionSub) {
-                case 1: vistaListarUsuarios(); break; // HU-USR-01 [cite: 47]
-                case 2: vistaCrearUsuario(); break;   // HU-USR-02 [cite: 47]
-                case 3: vistaEditarUsuario(); break;  // HU-USR-03 [cite: 47]
-                case 4: vistaEliminarUsuario(); break; // HU-USR-04 [cite: 47]
+                case 1: vistaListarUsuarios(); break;
+                case 2: vistaCrearUsuario(); break;
+                case 3: vistaEditarUsuario(); break;
+                case 4: vistaEliminarUsuario(); break;
                 case 0: break;
             }
         }

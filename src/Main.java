@@ -16,6 +16,6 @@ public class Main {
         Menu sistemaMenu = new Menu(categoriaService, productoService, usuarioService, pedidoService);
 
         // Arranca el flujo de la aplicación
-        sistemaMenu.arrancar();
+        sistemaMenu.ejecutar();
     }
 }

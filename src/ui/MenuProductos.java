@@ -4,17 +4,17 @@ import entities.Categoria;
 import entities.Producto;
 import exception.DatoInvalidoException;
 import exception.EntidadNoEncontradaException;
+import interfaces.MenuPantalla;
 import service.CategoriaService;
 import service.ProductoService;
-
 import java.util.List;
 
-public class MenuProductos extends MenuBase {
+public class MenuProductos extends MenuBase implements MenuPantalla {
     private ProductoService productoService;
     private CategoriaService categoriaService;
 
     public MenuProductos(ProductoService productoService, CategoriaService categoriaService) {
-        super(); // Inicializa el Scanner de la base heredada
+        super();
         this.productoService = productoService;
         this.categoriaService = categoriaService;
     }
@@ -29,11 +29,13 @@ public class MenuProductos extends MenuBase {
         System.out.println("0. Volver al menú principal");
     }
 
-    public void ejecutarSubmenu() {
+    // 🌟 Sincronizado con la interfaz MenuPantalla
+    @Override
+    public void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
             mostrarOpciones();
-            opcionSub = capturarOpcionNumericaSegura(0, 4); // Reutiliza el método protegido de la base
+            opcionSub = capturarOpcionNumericaSegura(0, 4);
 
             switch (opcionSub) {
                 case 1: vistaListarProductos(); break;

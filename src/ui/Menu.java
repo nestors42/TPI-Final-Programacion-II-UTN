@@ -1,20 +1,22 @@
 package ui;
 
+import interfaces.MenuPantalla;
 import service.CategoriaService;
 import service.PedidoService;
 import service.ProductoService;
 import service.UsuarioService;
 
-public class Menu extends MenuBase {
+public class Menu extends MenuBase implements MenuPantalla {
     private CategoriaService categoriaService;
     private ProductoService productoService;
     private UsuarioService usuarioService;
     private PedidoService pedidoService;
 
-    private MenuCategorias menuCategorias;
-    private MenuProductos menuProductos;
-    private MenuUsuarios menuUsuarios;
-    private MenuPedidos menuPedidos;
+    // 🌟 POLIMORFISMO: Declaramos los submenús usando el tipo de la Interfaz
+    private MenuPantalla menuCategorias;
+    private MenuPantalla menuProductos;
+    private MenuPantalla menuUsuarios;
+    private MenuPantalla menuPedidos;
 
     // CONSTRUCTOR DEFINITIVO: Recibe los 4 servicios en sintonía con tu Main
     public Menu(CategoriaService categoriaService, ProductoService productoService,
@@ -25,7 +27,7 @@ public class Menu extends MenuBase {
         this.usuarioService = usuarioService;
         this.pedidoService = pedidoService;
 
-        // Inicializamos todos los submenús pasándole sus dependencias
+        // Inicializamos los submenús (cuyas clases implementan el contrato de MenuPantalla)
         this.menuCategorias = new MenuCategorias(categoriaService);
         this.menuProductos = new MenuProductos(productoService, categoriaService);
         this.menuUsuarios = new MenuUsuarios(usuarioService);
@@ -42,17 +44,20 @@ public class Menu extends MenuBase {
         System.out.println("0. Salir");
     }
 
-    public void arrancar() {
+    // 🌟 Sincronizado con el contrato obligatorio de la interfaz MenuPantalla
+    @Override
+    public void ejecutar() {
         int opcion = -1;
         while (opcion != 0) {
             mostrarOpciones();
             opcion = capturarOpcionNumericaSegura(0, 4);
 
             switch (opcion) {
-                case 1: menuCategorias.ejecutarSubmenu(); break;
-                case 2: menuProductos.ejecutarSubmenu(); break;
-                case 3: menuUsuarios.ejecutarSubmenu(); break;
-                case 4: menuPedidos.ejecutarSubmenu(); break; // 👈 Ruteo al submenú transaccional
+                // Invocación polimórfica: no importa qué pantalla sea, todas saben qué hacer al llamar a .ejecutar()
+                case 1: menuCategorias.ejecutar(); break;
+                case 2: menuProductos.ejecutar(); break;
+                case 3: menuUsuarios.ejecutar(); break;
+                case 4: menuPedidos.ejecutar(); break;
                 case 0: System.out.println("\n¡Saliendo del sistema de Food Store!"); break;
             }
         }

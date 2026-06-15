@@ -1,18 +1,25 @@
 package ui;
 
+import interfaces.MenuPantalla;
+
 import java.util.Scanner;
 
-public abstract class MenuBase {
+// 🌟 Ahora la clase abstracta implementa el contrato de la interfaz
+public abstract class MenuBase implements MenuPantalla {
     protected Scanner scanner;
 
     public MenuBase() {
         this.scanner = new Scanner(System.in);
     }
 
-    // cada submenú se verá obligado a implementar sus opciones
+    // Método abstracto que cada hijo usará para imprimir su propio texto
     public abstract void mostrarOpciones();
 
-    // Método heredable y reutilizable: centraliza el try-catch de opciones numéricas
+    // 🌟 Reutilizamos la firma de la interfaz: cada pantalla definirá su bucle aquí
+    @Override
+    public abstract void ejecutar();
+
+    // El método utilitario con try-catch que ya tenías y que protege todo el sistema
     protected int capturarOpcionNumericaSegura(int rangoMin, int rangoMax) {
         while (true) {
             System.out.print("Seleccione una opción: ");
