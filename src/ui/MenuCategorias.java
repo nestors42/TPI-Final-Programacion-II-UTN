@@ -27,19 +27,12 @@ public class MenuCategorias extends MenuBase implements MenuPantalla {
 
     // 🌟 Sincronizado con la interfaz MenuPantalla
     @Override
-    public void ejecutar() {
-        int opcionSub = -1;
-        while (opcionSub != 0) {
-            mostrarOpciones();
-            opcionSub = capturarOpcionNumericaSegura(0, 4);
-
-            switch (opcionSub) {
-                case 1: vistaListarCategorias(); break;
-                case 2: vistaCrearCategoria(); break;
-                case 3: vistaEditarCategoria(); break;
-                case 4: vistaEliminarCategoria(); break;
-                case 0: break;
-            }
+    protected void evaluarOpcion(int opcion) {
+        switch (opcion) {
+            case 1: vistaListarCategorias(); break;
+            case 2: vistaCrearCategoria(); break;
+            case 3: vistaEditarCategoria(); break;
+            case 4: vistaEliminarCategoria(); break;
         }
     }
 

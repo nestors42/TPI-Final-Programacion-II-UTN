@@ -1,10 +1,8 @@
 package ui;
 
 import interfaces.MenuPantalla;
-
 import java.util.Scanner;
 
-// 🌟 Ahora la clase abstracta implementa el contrato de la interfaz
 public abstract class MenuBase implements MenuPantalla {
     protected Scanner scanner;
 
@@ -12,14 +10,26 @@ public abstract class MenuBase implements MenuPantalla {
         this.scanner = new Scanner(System.in);
     }
 
-    // Método abstracto que cada hijo usará para imprimir su propio texto
+    // 🌟 Los hijos solo tendrán que preocuparse por estas dos cosas:
     public abstract void mostrarOpciones();
+    protected abstract void evaluarOpcion(int opcion); // El switch de cada hijo
 
-    // 🌟 Reutilizamos la firma de la interfaz: cada pantalla definirá su bucle aquí
+
     @Override
-    public abstract void ejecutar();
+    public final void ejecutar() {
+        int opcionSub = -1;
+        while (opcionSub != 0) {
+            mostrarOpciones(); // Llamará al texto del hijo actual
+            opcionSub = capturarOpcionNumericaSegura(0, 4);
 
-    // El método utilitario con try-catch que ya tenías y que protege todo el sistema
+            if (opcionSub == 0) {
+                break; // Si es 0, sale del bucle limpiamente y vuelve atrás
+            }
+
+            evaluarOpcion(opcionSub); // Le pasa la opción limpia al switch del hijo
+        }
+    }
+
     protected int capturarOpcionNumericaSegura(int rangoMin, int rangoMax) {
         while (true) {
             System.out.print("Seleccione una opción: ");

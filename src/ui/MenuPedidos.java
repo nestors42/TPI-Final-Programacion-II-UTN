@@ -38,20 +38,14 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
     }
 
     // 🌟 Sincronizado con la interfaz MenuPantalla
+    // 🌟 Ruteo transaccional de pedidos
     @Override
-    public void ejecutar() {
-        int opcionSub = -1;
-        while (opcionSub != 0) {
-            mostrarOpciones();
-            opcionSub = capturarOpcionNumericaSegura(0, 4);
-
-            switch (opcionSub) {
-                case 1: vistaListarPedidos(); break;
-                case 2: vistaCrearPedido(); break;
-                case 3: vistaActualizarPedido(); break;
-                case 4: vistaEliminarPedido(); break;
-                case 0: break;
-            }
+    protected void evaluarOpcion(int opcion) {
+        switch (opcion) {
+            case 1: vistaListarPedidos(); break;
+            case 2: vistaCrearPedido(); break;
+            case 3: vistaActualizarPedido(); break;
+            case 4: vistaEliminarPedido(); break;
         }
     }
 

@@ -29,21 +29,14 @@ public class MenuProductos extends MenuBase implements MenuPantalla {
         System.out.println("0. Volver al menú principal");
     }
 
-    // 🌟 Sincronizado con la interfaz MenuPantalla
-    @Override
-    public void ejecutar() {
-        int opcionSub = -1;
-        while (opcionSub != 0) {
-            mostrarOpciones();
-            opcionSub = capturarOpcionNumericaSegura(0, 4);
 
-            switch (opcionSub) {
-                case 1: vistaListarProductos(); break;
-                case 2: vistaCrearProducto(); break;
-                case 3: vistaEditarProducto(); break;
-                case 4: vistaEliminarProducto(); break;
-                case 0: break;
-            }
+    @Override
+    protected void evaluarOpcion(int opcion) {
+        switch (opcion) {
+            case 1: vistaListarProductos(); break;
+            case 2: vistaCrearProducto(); break;
+            case 3: vistaEditarProducto(); break;
+            case 4: vistaEliminarProducto(); break;
         }
     }
 

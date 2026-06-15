@@ -27,20 +27,14 @@ public class MenuUsuarios extends MenuBase implements MenuPantalla {
     }
 
     // 🌟 Sincronizado con la interfaz MenuPantalla
+    // 🌟 Ruteo de usuarios centralizado
     @Override
-    public void ejecutar() {
-        int opcionSub = -1;
-        while (opcionSub != 0) {
-            mostrarOpciones();
-            opcionSub = capturarOpcionNumericaSegura(0, 4);
-
-            switch (opcionSub) {
-                case 1: vistaListarUsuarios(); break;
-                case 2: vistaCrearUsuario(); break;
-                case 3: vistaEditarUsuario(); break;
-                case 4: vistaEliminarUsuario(); break;
-                case 0: break;
-            }
+    protected void evaluarOpcion(int opcion) {
+        switch (opcion) {
+            case 1: vistaListarUsuarios(); break;
+            case 2: vistaCrearUsuario(); break;
+            case 3: vistaEditarUsuario(); break;
+            case 4: vistaEliminarUsuario(); break;
         }
     }
 

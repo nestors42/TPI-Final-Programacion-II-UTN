@@ -120,10 +120,6 @@ public class Pedido extends Base implements Calculable {
     }
 
 
-    public DetallePedido findeDetallePedidoByProducto(Producto producto) {
-        return findDetallePedidoByProducto(producto);
-    }
-
 
     public void deleteDetallePedidoByProducto(Producto producto) {
         DetallePedido encontrado = findDetallePedidoByProducto(producto);
