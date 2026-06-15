@@ -53,4 +53,9 @@ public class Menu extends MenuBase {
             case 4: menuPedidos.ejecutar(); break;
         }
     }
+
+    @Override
+    protected int getOpcionMaxima() {
+        return 4; // El menú principal va del 0 al 4
+    }
 }

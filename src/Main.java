@@ -5,7 +5,7 @@ import service.UsuarioService;
 import ui.Menu;
 
 public class Main {
-    // Inicializamos las 4 "Bases de Datos Virtuales" en memoria (Colecciones)
+    // Inicializamos las 4 "Bases de Datos Virtuales" en memoria
     private static CategoriaService categoriaService = new CategoriaService();
     private static ProductoService productoService = new ProductoService();
     private static UsuarioService usuarioService = new UsuarioService();

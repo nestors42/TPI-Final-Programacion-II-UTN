@@ -103,6 +103,11 @@ public class MenuCategorias extends MenuBase implements MenuPantalla {
         }
     }
 
+    @Override
+    protected int getOpcionMaxima() {
+        return 4; // El menú principal va del 0 al 4
+    }
+
 
 
 }

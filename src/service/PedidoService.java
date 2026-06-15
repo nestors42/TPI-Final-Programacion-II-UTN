@@ -57,7 +57,7 @@ public class PedidoService {
         Pedido nuevoPedido = new Pedido(nuevoId, false, LocalTime.now(), LocalDate.now(),
                 Estado.PENDIENTE, 0.0, formaPago, usuario);
 
-        // RESPALDO DE STOCKS: Guardamos el estado del stock por si hay que cancelar todo
+        // RESPALDO DE STOCKS:
         List<Integer> stocksDeRespaldo = new ArrayList<>();
         for (Producto p : productosCarrito) {
             stocksDeRespaldo.add(p.getStock());

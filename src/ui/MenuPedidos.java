@@ -200,4 +200,9 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
             System.out.println("\n[ERROR] " + e.getMessage());
         }
     }
+
+    @Override
+    protected int getOpcionMaxima() {
+        return 4; // El menú principal va del 0 al 4
+    }
 }

@@ -10,23 +10,29 @@ public abstract class MenuBase implements MenuPantalla {
         this.scanner = new Scanner(System.in);
     }
 
-    // 🌟 Los hijos solo tendrán que preocuparse por estas dos cosas:
+    // Contrato obligatorio para los hijos
     public abstract void mostrarOpciones();
-    protected abstract void evaluarOpcion(int opcion); // El switch de cada hijo
+    protected abstract void evaluarOpcion(int opcion);
+    protected abstract int getOpcionMaxima(); // 🌟 NUEVO: El hijo dirá su límite
 
-
+    /**
+     * MÉTODO PLANTILLA CENTRALIZADO
+     */
     @Override
     public final void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
-            mostrarOpciones(); // Llamará al texto del hijo actual
-            opcionSub = capturarOpcionNumericaSegura(0, 4);
+            mostrarOpciones();
+
+            // 🌟 SOLUCIÓN: El rango máximo ahora viene de lo que defina el hijo
+            opcionSub = capturarOpcionNumericaSegura(0, getOpcionMaxima());
+
+            // Le avisa al hijo que eligieron el 0 por si tiene un cartel (como el de Salir)
+            evaluarOpcion(opcionSub);
 
             if (opcionSub == 0) {
-                break; // Si es 0, sale del bucle limpiamente y vuelve atrás
+                break; // Rompe el bucle si eligió salir o volver
             }
-
-            evaluarOpcion(opcionSub); // Le pasa la opción limpia al switch del hijo
         }
     }
 
