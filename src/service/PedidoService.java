@@ -42,7 +42,7 @@ public class PedidoService {
         return activos;
     }
 
-    // 🌟 HU-PED-02: Crear pedido transaccional controlado (Criterio Pág. 12)
+    //Crear pedido transaccional
     public Pedido crearPedidoTransaccional(Usuario usuario, FormaPago formaPago, List<Producto> productosCarrito, List<Integer> cantidadesCarrito) throws DatoInvalidoException {
 
         if (usuario == null || usuario.isEliminado()) {
@@ -82,7 +82,6 @@ public class PedidoService {
                 // Descontamos stock temporalmente
                 prod.setStock(prod.getStock() - cantPedida);
 
-                // 🌟 REQUERIMIENTO PARCIAL/TPI: Invocación obligatoria de tu método del parcial
                 nuevoPedido.addDetallePedido(cantPedida, prod.getPrecio(), prod);
             }
 
@@ -97,7 +96,7 @@ public class PedidoService {
                 productosCarrito.get(i).setStock(stocksDeRespaldo.get(i));
             }
             // Propagamos el error para avisarle a la pantalla que la venta fue abortada
-            throw new DatoInvalidoException("TRANSACCIÓN ABORTADA: El pedido se canceló en memoria debido a: " + e.getMessage());
+            throw new DatoInvalidoException("TRANSACCIÓN ABORTADA: El pedido se canceló debido a: " + e.getMessage());
         }
     }
 

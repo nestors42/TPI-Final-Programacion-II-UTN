@@ -74,7 +74,7 @@ public class CategoriaService {
         // si no existe lanza la excepcion de manera automatica
         Categoria categoria = buscarPorId(id);
 
-        if (nuevoNombre != null && nuevoNombre.trim().isEmpty()){
+        if (nuevoNombre != null && !nuevoNombre.trim().isEmpty()){
 
             // aca evaluamos que el nuevo nombre no sea igual a otra
             for (Categoria c : categorias){
@@ -84,7 +84,7 @@ public class CategoriaService {
             }
             categoria.setNombre(nuevoNombre.trim());
         }
-        if (nuevaDescripcion != null){
+        if (nuevaDescripcion != null && !nuevaDescripcion.trim().isEmpty()){
             categoria.setDescripcion(nuevaDescripcion);
         }
 
