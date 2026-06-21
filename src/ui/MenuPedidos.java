@@ -53,7 +53,7 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
     private void vistaListarPedidos() {
         List<Pedido> activos = pedidoService.listarPedidosActivos();
         if (activos.isEmpty()) {
-            System.out.println("\n[INFO] No se registran pedidos cargados en el sistema. [cite: 249]");
+            System.out.println("\n[INFO] No se registran pedidos cargados en el sistema.");
             return;
         }
 
