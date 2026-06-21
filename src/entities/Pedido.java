@@ -91,20 +91,19 @@ public class Pedido extends Base implements Calculable {
 
 
 
-    // Ajustamos la firma metiendo el Double precio según lo que pide en el TPI
+    // Ajustamos la firma metiendo el Double precio
     public void addDetallePedido(int cantidad, Double precio, Producto producto) {
         Long nuevoId = (long) (this.detalles.size() + 1);
 
         // Al instanciar el detalle, le pasamos el precio histórico de venta
         DetallePedido nuevoDetalle = new DetallePedido(nuevoId, false, LocalTime.now(), cantidad, producto);
 
-        // Si tu constructor de DetallePedido calculaba con producto.getPrecio(),
 
         nuevoDetalle.setSubtotal(cantidad * precio);
         nuevoDetalle.setPedido(this);
 
         this.detalles.add(nuevoDetalle);
-        calcularTotal(); //Invocación vía la interfaz Calculable requerida en la HU-PED-02
+        calcularTotal(); //Invocación vía la interfaz Calculable
     }
 
 

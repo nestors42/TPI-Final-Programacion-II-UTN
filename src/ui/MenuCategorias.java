@@ -25,7 +25,7 @@ public class MenuCategorias extends MenuBase implements MenuPantalla {
         System.out.println("0. Volver al menú principal");
     }
 
-    // 🌟 Sincronizado con la interfaz MenuPantalla
+    //Sincronizado con la interfaz MenuPantalla
     @Override
     protected void evaluarOpcion(int opcion) {
         switch (opcion) {

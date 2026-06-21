@@ -37,8 +37,8 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
         System.out.println("0. Volver al menú principal");
     }
 
-    // 🌟 Sincronizado con la interfaz MenuPantalla
-    // 🌟 Ruteo transaccional de pedidos
+    // Sincronizado con la interfaz MenuPantalla
+
     @Override
     protected void evaluarOpcion(int opcion) {
         switch (opcion) {
@@ -143,7 +143,7 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
         } catch (NumberFormatException e) {
             System.out.println("\n[ERROR] Ingreso numérico incorrecto.");
         } catch (EntidadNoEncontradaException | DatoInvalidoException e) {
-            System.out.println("\n[ERROR] " + e.getMessage()); // Captura el rebote por stock insuficiente [cite: 382]
+            System.out.println("\n[ERROR] " + e.getMessage()); // Captura el rebote por stock insuficiente
         }
     }
 
@@ -158,7 +158,7 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
             System.out.println("¿Desea actualizar el Estado del envío? (S/N): ");
             Estado nuevoEstado = null;
             if (scanner.nextLine().equalsIgnoreCase("S")) {
-                System.out.println("Estados válidos: 1. PENDIENTE | 2. CONFIRMADO | 3. TERMINADO | 4. CANCELADO [cite: 102]");
+                System.out.println("Estados válidos: 1. PENDIENTE | 2. CONFIRMADO | 3. TERMINADO | 4. CANCELADO");
                 int op = capturarOpcionNumericaSegura(1, 4);
                 nuevoEstado = Estado.values()[op - 1];
             }
@@ -166,13 +166,13 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
             System.out.println("¿Desea modificar la Forma de Pago? (S/N): ");
             FormaPago nuevaForma = null;
             if (scanner.nextLine().equalsIgnoreCase("S")) {
-                System.out.println("Opciones: 1. TARJETA | 2. TRANSFERENCIA | 3. EFECTIVO [cite: 99]");
+                System.out.println("Opciones: 1. TARJETA | 2. TRANSFERENCIA | 3. EFECTIVO");
                 int op = capturarOpcionNumericaSegura(1, 3);
                 nuevaForma = FormaPago.values()[op - 1];
             }
 
             pedidoService.actualizarPedido(id, nuevoEstado, nuevaForma);
-            System.out.println("\n[ÉXITO] Los datos del pedido fueron actualizados. [cite: 389]");
+            System.out.println("\n[ÉXITO] Los datos del pedido fueron actualizados.");
 
         } catch (NumberFormatException e) {
             System.out.println("\n[ERROR] El ID debe ser un número entero.");
@@ -183,14 +183,14 @@ public class MenuPedidos extends MenuBase implements MenuPantalla {
 
     // Eliminar Pedido
     private void vistaEliminarPedido() {
-        System.out.println("\n-> CANCELACIÓN DE PEDIDO (SOFT DELETE) [cite: 391]");
+        System.out.println("\n-> CANCELACIÓN DE PEDIDO (SOFT DELETE)");
         System.out.print("Ingrese el ID del pedido que desea dar de baja: ");
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            System.out.print("¿Confirma la baja de la orden de compra? (S/N): [cite: 274]");
+            System.out.print("¿Confirma la baja de la orden de compra? (S/N): ");
             if (scanner.nextLine().equalsIgnoreCase("S")) {
                 pedidoService.eliminarPedido(id);
-                System.out.println("\n[ÉXITO] Orden removida de las pantallas de gestión activa. [cite: 395]");
+                System.out.println("\n[ÉXITO] Orden removida de las pantallas de gestión activa.");
             } else {
                 System.out.println("\n[INFO] Cancelación suspendida.");
             }

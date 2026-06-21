@@ -22,7 +22,7 @@ public class PedidoService {
     private ProductoService productoService;
 
     public PedidoService(UsuarioService usuarioService, ProductoService productoService) {
-        this.pedidos = DatabaseConfig.getPedidosTable(); // Busca su lista en la caja fuerte
+        this.pedidos = DatabaseConfig.getPedidosTable(); // Busca su lista
         this.usuarioService = usuarioService;
         this.productoService = productoService;
     }
@@ -31,7 +31,7 @@ public class PedidoService {
         return ++ultimoId;
     }
 
-    // 🌟 HU-PED-01: Listar pedidos activos
+    //Listar pedidos activos
     public List<Pedido> listarPedidosActivos() {
         List<Pedido> activos = new ArrayList<>();
         for (Pedido p : pedidos) {

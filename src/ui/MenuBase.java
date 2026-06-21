@@ -13,21 +13,19 @@ public abstract class MenuBase implements MenuPantalla {
     // Contrato obligatorio para los hijos
     public abstract void mostrarOpciones();
     protected abstract void evaluarOpcion(int opcion);
-    protected abstract int getOpcionMaxima(); // 🌟 NUEVO: El hijo dirá su límite
+    protected abstract int getOpcionMaxima();
 
-    /**
-     * MÉTODO PLANTILLA CENTRALIZADO
-     */
+    // pantalla centralizada
     @Override
     public final void ejecutar() {
         int opcionSub = -1;
         while (opcionSub != 0) {
             mostrarOpciones();
 
-            // 🌟 SOLUCIÓN: El rango máximo ahora viene de lo que defina el hijo
+            //El rango máximo ahora viene de lo que defina el hijo
             opcionSub = capturarOpcionNumericaSegura(0, getOpcionMaxima());
 
-            // Le avisa al hijo que eligieron el 0 por si tiene un cartel (como el de Salir)
+            // Le avisa al hijo que eligieron el 0
             evaluarOpcion(opcionSub);
 
             if (opcionSub == 0) {
