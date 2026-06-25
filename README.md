@@ -79,8 +79,11 @@ Pedido Número: #1 | Facturado: $12400.00
 ## Si intentas realizar un pedido de un artículo superando su stock real (por ejemplo, pidiendo 20 Hamburguesas Doble cuando solo quedan 8), el sistema ejecuta el Rollback de stock automáticamente y muestra el error controlado de manera elegante en la terminal sin tumbar la aplicación:
 [ERROR] TRANSACCIÓN ABORTADA: El pedido se canceló debido a: Falta de stock para 'Hamburguesa Doble'. Solicitado: 20 | Disponible: 8
 
+
 ## requisitos de instalacion y ejecucion
 git clone [https://github.com/nestors42/TPI-Final-Programacion-II-UTN.git](https://github.com/nestors42/TPI-Final-Programacion-II-UTN.git)
+
+## PDF GRUPO 172
 [TP_Integrador_Program-Grupo-176.pdf](https://github.com/user-attachments/files/29192168/TP_Integrador_Program-Grupo-176.pdf)
 https://www.youtube.com/watch?v=voMOPqtnJto&list=PLOw7b-NX043aSC7ZNtEuVfY8xZoNzVqdJ
 https://www.youtube.com/watch?v=1g89BDs84Ss
@@ -91,3 +94,5 @@ https://www.youtube.com/watch?v=DNppymy3W8s
 https://www.youtube.com/watch?v=qSOIxeqrfdk&t=569s
 https://www.youtube.com/watch?v=Sh1xrDAOPyY&t=467s
 https://www.youtube.com/watch?v=zBIG4D8KhWc
+## enlace video explicativo
+https://www.youtube.com/watch?v=mrMbWido11Y
