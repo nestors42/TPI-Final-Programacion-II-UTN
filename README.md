@@ -82,4 +82,14 @@ Pedido Número: #1 | Facturado: $12400.00
 ## requisitos de instalacion y ejecucion
 git clone [https://github.com/nestors42/TPI-Final-Programacion-II-UTN.git](https://github.com/nestors42/TPI-Final-Programacion-II-UTN.git)
 [TP_Integrador_Program-Grupo-176.pdf](https://github.com/user-attachments/files/29192168/TP_Integrador_Program-Grupo-176.pdf)
+•	https://www.youtube.com/watch?v=voMOPqtnJto&list=PLOw7b-NX043aSC7ZNtEuVfY8xZoNzVqdJ
+•	https://www.youtube.com/watch?v=1g89BDs84Ss
+•	https://www.youtube.com/watch?v=aKf8ivfyxnI
+•	https://youtu.be/mrMbWido11Y?si=s5K88wbC95KXdDF4
+•	https://www.youtube.com/watch?v=XnLRJb7Hv5c
+•	https://www.youtube.com/watch?v=DNppymy3W8s
+•	https://www.youtube.com/watch?v=qSOIxeqrfdk&t=569s
+•	https://www.youtube.com/watch?v=Sh1xrDAOPyY&t=467s
+•	https://www.youtube.com/watch?v=zBIG4D8KhWc
+
 
